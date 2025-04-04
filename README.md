@@ -46,3 +46,8 @@ The Stylix module for Home-Manager is used to automatically customise the colour
 # Conclusion
 
 I’m most proud of my declerative configuration of NeoVim using the NixVim module for Home-Manager. NixVim allowed me to configure Neovim, including all of its plugins, keymaps and settings, through the use of nix code. I have succesfully created a fully-functional IDE within the terminal. This includes code completion using LSPs, a working sidebar file-browser, a markdown environment and several other features which can be explored in the “modules/nixvim/” folder of the repository.
+
+<div align="center">
+  <a target="_blank"><img src="./images/2.png"</a>
+</div>
+
