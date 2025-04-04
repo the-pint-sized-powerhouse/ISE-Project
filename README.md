@@ -17,6 +17,10 @@ Upon discovering NixOS I discovered it met all expectations. NixOS, which is inc
 
 NixOS’ main selling-point is its fully declarative system-configuration. Your entire system-configuration is placed within a Nix Flake. This file (flake.nix in the repository) is responsible for all inputs and outputs of the system. For instance the Nix Packages repository is inputted by the Flake, it is then given the variable nixpkgs as well as being assigned certain attributes, nixpkgs can now be utilised all throughout the file tree declaratively. All input versions are then automatically locked in the flake.lock file so that there versions do not change unless updated, this ensure that no software breaks due to unexpected or unintentional updates.
 
+<div align="center">
+  <a target="_blank"><img src="./images/1.png"</a>
+</div>
+
 # Design philosophy
 
 Due to my interest in UNIX based operating systems I decided to employ the UNIX Design Philosophy as defined by Ken Thompson and documented by Doug McIlroy in the Bell System Technical Journal in 1978. The modularisation of my files ensured that editing and maintaining my code would be easy due to its well structured layout in separate files. Each nix file is designed to do one thing, as simply and efficiently as possible. My code is also easily testable due to the modularisation of my file tree resulting in the isolation of error messages to individual files.
