@@ -1,0 +1,32 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "Terminal Runner",
+  "description": "Run commands in terminal",
+  "developer_name": "Ellis Kenyő",
+  "icon": "images/terminal-icon.svg",
+  "preferences": [
+    {
+      "id": "keyword",
+      "type": "keyword",
+      "name": "Run in Terminal",
+      "description": "Run command in terminal",
+      "default_value": ">"
+    },
+    {
+      "id": "showStdout",
+      "type": "select",
+      "name": "Show output",
+      "description": "Whether or not to show the output of commands",
+      "options": [true, false],
+      "default_value": true
+    },
+    {
+      "id": "showStderr",
+      "type": "select",
+      "name": "Show errors",
+      "description": "Whether or not to show the error of commands",
+      "options": [true, false],
+      "default_value": true
+    }
+  ]
+}

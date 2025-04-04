@@ -1,0 +1,3 @@
+{
+  programs.aerc.enable = true;
+}
