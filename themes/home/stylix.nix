@@ -3,12 +3,10 @@
   pkgs,
   config,
   ...
-}:
-
-{
+}: {
   stylix = {
     enable = true;
-    #image = ../../wallpapers/evening-sky.png;
+    image = ./black.jpg;
     cursor = {
       name = userSettings.cursorName;
       package = pkgs.bibata-cursors;
@@ -16,19 +14,16 @@
     };
     fonts = {
       serif = {
-        name = userSettings.fontSerif;
-        package = pkgs.nerdfonts;
+        name = "${userSettings.fontMono}";
       };
       sansSerif = {
-        name = userSettings.fontSerif;
-        package = pkgs.nerdfonts;
+        name = "${userSettings.fontMono}";
       };
       monospace = {
-        name = userSettings.fontMono;
-        package = pkgs.nerdfonts;
+        name = "${userSettings.fontMono}";
       };
       sizes = {
-        terminal = 10;
+        terminal = 11;
       };
     };
     targets = {
@@ -38,13 +33,15 @@
       gtk.flatpakSupport.enable = true;
       foot.enable = false;
       xresources.enable = true;
-      gnome-text-editor.enable = true;
-      firefox.profileNames = [
-        "8b2kzims.default"
-      ];
+      firefox.profileNames = ["8b2kzims.default"];
+      zathura.enable = false;
+      nixvim = {
+        enable = true;
+        plugin = "base16-nvim";
+      };
     };
   };
-  home.file.".dotfiles/themes/colours".text = with config.lib.stylix.colors; ''
+  home.file.".colours".text = with config.lib.stylix.colors; ''
     base00  ->  #${base00-hex}  ->   rgb(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b})
     base01  ->  #${base01-hex}  ->   rgb(${base01-rgb-r}, ${base01-rgb-g}, ${base01-rgb-b})
     base02  ->  #${base02-hex}  ->   rgb(${base02-rgb-r}, ${base02-rgb-g}, ${base02-rgb-b})

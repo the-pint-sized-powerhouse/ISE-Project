@@ -1,1 +1,3 @@
-{ programs.nixvim.plugins.noice.enable = true; }
+{
+  programs.nixvim.plugins.noice.enable = true;
+}

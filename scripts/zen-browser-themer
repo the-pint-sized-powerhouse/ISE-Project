@@ -1,0 +1,4 @@
+rm -rf ~/.zen/default/chrome/userChrome.css
+rm -rf ~/.zen/default/chrome/userContent.css
+cp ~/.zen/default/chrome/originalUserChrome.css ~/.zen/default/chrome/userChrome.css
+cp ~/.zen/default/chrome/originalUserContent.css ~/.zen/default/chrome/userContent.css

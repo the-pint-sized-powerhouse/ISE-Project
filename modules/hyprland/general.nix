@@ -1,6 +1,8 @@
-{ config, ... }:
-
 {
+  config,
+  userSettings,
+  ...
+}: {
   wayland.windowManager.hyprland = with config.lib.stylix.colors; {
     settings = {
       general = {
@@ -17,20 +19,19 @@
           enabled = true;
         };
       };
-
       decoration = {
         rounding = 4;
-        active_opacity = 0.8;
-        inactive_opacity = 0.8;
+        active_opacity = 0.825;
+        inactive_opacity = 0.825;
         fullscreen_opacity = 1;
         blur = {
           enabled = true;
-          size = 5;
+          size = 2;
           passes = 3;
           noise = 0;
-          new_optimizations = true;
-          contrast = 1.17;
-          xray = true;
+          new_optimizations = false;
+          contrast = 1.5;
+          xray = false;
         };
         shadow = {
           enabled = false;
@@ -40,7 +41,6 @@
           color = "0xee${base00-hex}";
         };
       };
-
       animations = {
         enabled = true;
         bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
@@ -68,12 +68,12 @@
       misc = {
         force_default_wallpaper = -1;
         disable_hyprland_logo = true;
-        font_family = "0xProto Nerd Font";
+        disable_splash_rendering = true;
+        font_family = "${userSettings.fontSerif}";
         animate_manual_resizes = true;
         close_special_on_empty = true;
         new_window_takes_over_fullscreen = 2;
         middle_click_paste = false;
-        vfr = true;
       };
       monitor = [
         "DP-2, 1920x1080@240, 0x0, 1"
@@ -89,7 +89,11 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
       ];
+      xwayland = {
+        enabled = true;
+        force_zero_scaling = true;
+      };
     };
-    systemd.variables = [ "--all" ];
+    systemd.variables = ["--all"];
   };
 }

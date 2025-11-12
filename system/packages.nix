@@ -1,100 +1,63 @@
 {
   pkgs,
-  inputs,
   pkgs-unstable,
-  pkgs-master,
+  userSettings,
+  inputs,
   ...
-}:
-let
-  pkgs-hyprland = inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
-{
+}: {
   # -------- STABLE ------- #
   environment.systemPackages =
     (with pkgs; [
-      onefetch
-      android-tools
-      appeditor
+      kdePackages.ark
       bat
       base16-schemes
       black
       btop
+      calligraphy
       cava
-      ccache
       celluloid
-      clang
-      cmake
-      cmatrix
-      coreutils
-      dua
+      discover-overlay
+      kdePackages.dolphin
       emote
-      exiftool
       mediainfo
       fastfetch
-      fd
-      file
+      firefox
       firefoxpwa
       foot
       fragments
       fzf
       git
-      glib
-      gnome-calculator
-      gnumake
-      go
       gparted
-      gperf
-      has
-      hyprlock
       imv
-      input-leap
+      kitty
       jq
-      kalker # calculator
-      kdePackages.kdenlive
       kdePackages.qt6ct
-      libgcc
-      libnotify
       libreoffice-qt6-fresh
       libsForQt5.qt5ct
-      mesa
-      meson
+      lsd
       mpv
       nautilus
-      ncurses
       nix-du
-      nixos-generators
-      nodejs_22
+      nix-unit
       ntfs3g
-      onlyoffice-desktopeditors
-      openshot-qt
-      openssl
       pavucontrol
       playerctl
       pokeget-rs
       pyprland
       python
       python3
-      python312
-      rclone
-      readline
-      remnote
+      quickgui
       ripgrep
-      rubyPackages_3_3.sqlite3
-      rustup
-      scrcpy
       spotify
-      sqlite
-      statix
       swaynotificationcenter
       swayosd
       swww
-      teams-for-linux
       thunderbird
       tldr
       udisks
+      ulauncher
       unzip
       usbutils
-      util-linux
       vencord
       volctl
       waybar
@@ -104,111 +67,96 @@ in
       which
       wl-clipboard
       wlogout
-      wob
       yazi
       zapzap
       zathura
+      zed-editor
       zip
-      zlib
     ])
-
-    ++
-
-      # ----- UNSTABLE ----- #
-      (with pkgs-unstable; [
-        discord
-        gopls
-        hclfmt
-        home-manager
-        hyprpolkitagent
-        hyprpicker
-        hyprshot
-        kitty
-        librewolf
-        lua
-        markdown-oxide
-        neovim-unwrapped
-        nixd
-        nixfmt-rfc-style
-        nix-output-monitor
-        prettierd
-        pyright
-        stylua
-        ulauncher
-        wttrbar
-        yamllint
-        yamlfmt
-      ])
-
-    ++
-
-      (with pkgs.python312Packages; [
-        libcst
-        python-lsp-server
-        numpy
-        numpy_1
-        numpy_2
-        numpyro
-        numpy-stl
-        numpy-groupies
-        pip
-        pandas
-      ])
-
-    ++
-
-      (with pkgs-master; [
-        nchat
-      ])
-
-    ++
-
-      # --------- FISH PLUGINS --------- #
-      (with pkgs-unstable.fishPlugins; [
-        autopair
-        done
-        puffer
-        sponge
-      ]);
+    # ----- UNSTABLE ----- #
+    ++ (with pkgs-unstable; [
+      alejandra
+      discord
+      gopls
+      hclfmt
+      hyprpolkitagent
+      hyprshot
+      lua
+      markdown-oxide
+      nchat
+      neovim-unwrapped
+      nixd
+      nixfmt-rfc-style
+      nix-output-monitor
+      prettierd
+      pyright
+      basedpyright
+      stylua
+      wttrbar
+      yamllint
+      yamlfmt
+    ])
+    # ----- PYTHON-PACKAGES ----- #
+    ++ (with pkgs.python312Packages; [
+      libcst
+      python-lsp-server
+      pip
+      psutil
+    ])
+    # --------- FISH PLUGINS --------- #
+    ++ (with pkgs-unstable.fishPlugins; [
+      autopair
+      colored-man-pages
+      done
+      hydro
+      puffer
+      sponge
+      transient-fish
+    ]);
 
   services.flatpak.packages = [
     "io.github.giantpinkrobots.flatsweep"
     "com.usebottles.bottles"
-    "io.github.hamza_algohary.Coulomb"
     "io.frama.tractor.carburetor"
     "it.mijorus.whisper"
-    "in.srev.guiscrcpy"
-    "eu.nokun.MirrorHall"
-    "io.github.limo_app.limo"
+    "org.prismlauncher.PrismLauncher"
+    "com.stremio.Stremio"
   ];
 
   programs = {
     hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      portalPackage = pkgs-hyprland.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
     };
-
-    fish.enable = true;
-
-    mtr.enable = true;
-
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/${userSettings.username}/.dotfiles";
+    };
+    fish = {
+      enable = true;
+      package = pkgs.fish;
+    };
+    mtr = {
+      enable = true;
+      package = pkgs.mtr;
+    };
     gnupg = {
       agent = {
         enable = true;
         enableSSHSupport = true;
       };
     };
-  };
-
-  # ------ NIXPKGS SETTINGS ------ #
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [
-        "python-2.7.18.8"
-      ];
+    nix-index-database = {
+      comma.enable = true;
+    };
+    # ----- temp ----- #
+    steam.enable = true;
+    gamemode.enable = true;
+    gamescope = {
+      enable = true;
+      capSysNice = true;
     };
   };
 }

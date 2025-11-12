@@ -1,10 +1,11 @@
-{ pkgs, userSettings, ... }:
-
 {
+  pkgs,
+  userSettings,
+  ...
+}: {
   stylix = {
     enable = true;
     autoEnable = true;
-    enableReleaseChecks = false;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/${userSettings.theme}.yaml";
     cursor = {
       package = pkgs.bibata-cursors;

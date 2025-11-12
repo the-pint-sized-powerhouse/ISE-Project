@@ -3,7 +3,7 @@
     "name": "Hyprshot Monitor",
     "description": "Screenshots entire monitor",
     "icon": "~/.local/share/ulauncher/extensions/ulauncher-custom-script/images/screenshot-icon.png",
-    "script": "hyprshot -m output -o ~/Images/Screenshots",
+    "script": "hyprshot -m output -o ~/Pictures/Screenshots",
     "default_arguments": [
       "~/.config/ulauncher/scripts.json"
     ]
@@ -12,7 +12,7 @@
     "name": "Hyprshot Window",
     "description": "Screenshots a given window",
     "icon": "~/.local/share/ulauncher/extensions/ulauncher-custom-script/images/screenshot-icon.png",
-    "script": "hyprshot -m window -o ~/Images/Screenshots",
+    "script": "hyprshot -m window -o ~/Pictures/Screenshots",
     "default_arguments": [
       "~/.config/ulauncher/scripts.json"
     ]
@@ -21,7 +21,7 @@
     "name": "Hyprshot Region",
     "description": "Screenshots a selected area",
     "icon": "~/.local/share/ulauncher/extensions/ulauncher-custom-script/images/screenshot-icon.png",
-    "script": "hyprshot -m region -o ~/Images/Screenshots",
+    "script": "hyprshot -m region -o ~/Pictures/Screenshots",
     "default_arguments": [
       "~/.config/ulauncher/scripts.json"
     ]

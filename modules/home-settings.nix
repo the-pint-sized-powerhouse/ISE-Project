@@ -1,6 +1,6 @@
-{
+{userSettings, ...}: {
   home = {
-    username = "fionnbennett";
-    homeDirectory = "/home/fionnbennett";
+    username = "${userSettings.username}";
+    homeDirectory = "/home/${userSettings.username}/";
   };
 }

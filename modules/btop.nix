@@ -1,5 +1,4 @@
 {
-  # ------- BTOP -------- #
   programs.btop = {
     enable = true;
     settings = {

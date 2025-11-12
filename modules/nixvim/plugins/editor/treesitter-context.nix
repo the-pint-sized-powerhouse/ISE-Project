@@ -1,5 +1,3 @@
 {
-  programs.nixvim.plugins.treesiter-context = {
-    enable = true;
-  };
+  programs.nixvim.plugins.treesiter-context.enable = true;
 }

@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   programs.nixvim.plugins.todo-comments = with config.lib.stylix.colors; {
     enable = true;
     settings = {

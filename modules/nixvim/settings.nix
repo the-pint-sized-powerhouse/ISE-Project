@@ -1,30 +1,29 @@
 {
   programs.nixvim.config = {
-    extraConfigLuaPre =
-      # lua
-      ''
-        vim.fn.sign_define("diagnosticsignerror", { text = " ", texthl = "diagnosticerror", linehl = "", numhl = "" })
-        vim.fn.sign_define("diagnosticsignwarn", { text = " ", texthl = "diagnosticwarn", linehl = "", numhl = "" })
-        vim.fn.sign_define("diagnosticsignhint", { text = "󰌵", texthl = "diagnostichint", linehl = "", numhl = "" })
-        vim.fn.sign_define("diagnosticsigninfo", { text = " ", texthl = "diagnosticinfo", linehl = "", numhl = "" })
-      '';
     clipboard = {
       providers.wl-copy.enable = true;
     };
 
+    extraConfigLuaPost = ''
+      vim.wo.fillchars='eob: '
+    '';
+
     opts = {
-      number = true;
+      number = false;
+      textwidth = 0;
+      wrapmargin = 0;
+      laststatus = 0;
       relativenumber = false;
       clipboard = "unnamedplus";
       tabstop = 2;
       softtabstop = 2;
-      showtabline = 2;
+      showtabline = 1;
       expandtab = true;
       smartindent = true;
       shiftwidth = 2;
       breakindent = true;
       cursorline = false;
-      scrolloff = 8;
+      scrolloff = 2;
       mouse = "a";
       foldmethod = "manual";
       foldenable = false;

@@ -26,15 +26,10 @@
     ./plugins/markdown/render-markdown.nix
     ./plugins/markdown/bullets.nix
 
-    #Org-Mode
-    ./plugins/org-mode/neorg.nix
-
-    # Snippets
-    ./plugins/snippets/luasnip.nix
-
     # UI plugins
-    ./plugins/ui/bufferline.nix
+    ./plugins/ui/codesnap.nix
     ./plugins/ui/lualine.nix
+    ./plugins/ui/neoscroll.nix
     ./plugins/ui/noice.nix
     ./plugins/ui/notify.nix
     ./plugins/ui/nui.nix
@@ -43,10 +38,8 @@
 
     # Utils
     ./plugins/utils/fzf-lua.nix
-    ./plugins/utils/markdown-preview.nix
     ./plugins/utils/neotest.nix
     ./plugins/utils/telescope.nix
-    ./plugins/utils/toggleterm.nix
     ./plugins/utils/web-devicons.nix
     ./plugins/utils/whichkey.nix
     ./plugins/utils/yazi.nix

@@ -2,67 +2,50 @@
   programs.nixvim.plugins.conform-nvim = {
     enable = true;
     settings = {
-
       format_on_save = {
         lspFallback = true;
         timeoutMs = 500;
       };
       notify_on_error = true;
-
       formatters_by_ft = {
-        liquidsoap = [ "liquidsoap-prettier" ];
+        bash = ["shmt"];
+        liquidsoap = ["liquidsoap-prettier"];
         html = [
-          [
-            "prettierd"
-            "prettier"
-          ]
+          "prettierd"
+          "prettier"
         ];
         css = [
-          [
-            "prettierd"
-            "prettier"
-          ]
+          "prettierd"
+          "prettier"
         ];
         javascript = [
-          [
-            "prettierd"
-            "prettier"
-          ]
+          "prettierd"
+          "prettier"
         ];
         javascriptreact = [
-          [
-            "prettierd"
-            "prettier"
-          ]
+          "prettierd"
+          "prettier"
         ];
         typescript = [
-          [
-            "prettierd"
-            "prettier"
-          ]
+          "prettierd"
+          "prettier"
         ];
         typescriptreact = [
-          [
-            "prettierd"
-            "prettier"
-          ]
+          "prettierd"
+          "prettier"
         ];
-        python = [ "black" ];
-        lua = [ "stylua" ];
-        nix = [ "nixfmt" ];
+        python = ["black"];
+        lua = ["stylua"];
+        nix = ["alejandra"];
         markdown = [
-          [
-            "prettierd"
-            "prettier"
-          ]
+          "prettierd"
+          "prettier"
         ];
         yaml = [
           "yamllint"
           "yamlfmt"
         ];
-        terragrunt = [
-          "hcl"
-        ];
+        terragrunt = ["hcl"];
       };
     };
   };

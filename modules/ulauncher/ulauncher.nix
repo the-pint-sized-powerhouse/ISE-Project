@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{config, ...}: {
   imports = [
     ./extensions/extensions.nix
   ];

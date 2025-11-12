@@ -1,6 +1,8 @@
-{ config, ... }:
-
 {
+  config,
+  userSettings,
+  ...
+}: {
   # --------- WLOGOUT --------- #
   programs.wlogout = {
     enable = true;
@@ -44,7 +46,7 @@
     ];
     style = with config.lib.stylix.colors; ''
       window {
-        font-family: "0xProto Nerd Font";
+        font-family: "${userSettings.fontSerif}";
         font-size: 14pt;
         color: #${base05-hex};
         background-color: rgba(${base01-rgb-r}, ${base01-rgb-g}, ${base01-rgb-b}, 0.5);

@@ -1,63 +1,118 @@
 {
-  programs.fastfetch = {
-    enable = true;
-    settings = {
-      logo = {
-        type = "small";
-      };
-      display = {
-        separator = "->   ";
-        color = "cyan";
-      };
-      modules = [
-        { type = "title"; }
-        "separator"
+  xdg.configFile."fastfetch/config.jsonc".text = ''
+    {
+      "logo": {
+        "type": "none",
+        "padding": {
+          "top": 2,
+        },
+      },
+      "general": {},
+      "display": {
+        "disableLinewrap": "false",
+        "separator": "",
+        "key": {
+          "width": 16,
+        },
+        "constants": [
+          "\u001b[48;2;43;43;69m",
+          "\u001b[48;2;56;59;78m",
+          "\u001b[90m│                                                            │\u001b[60D\u001b[39m",
+        ],
+      },
+      "modules": [
         {
-          key = " Distro        ";
-          type = "os";
-        }
+          "type": "custom",
+          "key": "{#90}╭─────────────╮",
+          "format": "{#90}╭────────────────────────────────────────────────────────────╮",
+        },
         {
-          key = " Host          ";
-          type = "host";
-        }
+          "type": "title",
+          "key": "{#90}│ {#92}User        {#90}│",
+          "format": "{$3}{user-name} {#2}[{home-dir}]",
+        },
         {
-          key = " WM            ";
-          type = "wm";
-        }
+          "type": "datetime",
+          "key": "{#90}│ {#92}Datetime    {#90}│",
+          "format": "{$3}{year}-{month-pretty}-{day-in-month}  {hour-pretty}:{minute-pretty}:{second-pretty}  {#2}{weekday}  {#2}[W{week}] {#2}[UTC{offset-from-utc}]",
+        },
         {
-          key = " Locale        ";
-          type = "locale";
-        }
+          "type": "host",
+          "key": "{#90}│ {#93}Machine     {#90}│",
+          "format": "{$3}{name} {#2}{version}",
+        },
         {
-          key = " Terminal      ";
-          type = "terminal";
-        }
+          "type": "os",
+          "key": "{#90}│ {#93}OS          {#90}│",
+          "format": "{$3}{pretty-name}  {#2}[{arch}]",
+        },
         {
-          key = "󰈺 Shell         ";
-          type = "shell";
-        }
+          "type": "kernel",
+          "key": "{#90}│ {#93}Kernel      {#90}│",
+          "format": "{$3}{sysname} {#2}[v{release}]",
+        },
         {
-          key = " Stylix Theme  ";
-          type = "command";
-          text = "~/.config/fastfetch/theme";
-        }
+          "type": "uptime",
+          "key": "{#90}│ {#93}Uptime      {#90}│",
+          "format": "{$3}{days} Days + {hours}:{minutes}:{seconds}",
+        },
         {
-          key = "󰂎 Battery       ";
-          type = "battery";
-        }
+          "type": "cpu",
+          "key": "{#90}│ {#91}CPU         {#90}│",
+          "showPeCoreCount": true,
+          "temp": true,
+          "format": "{$3}{name} {#2}[C:{core-types}] {#2}[{freq-max}]",
+        },
         {
-          key = " Media         ";
-          type = "media";
-        }
-
-        "break"
+          "type": "gpu",
+          "key": "{#90}│ {#91}GPU         {#90}│",
+          "detectionMethod": "auto",
+          "hideType": "none",
+          "temp": true,
+          "format": "{$3}{name} {#2}[C:{core-count}] {#2}[{type}]",
+        },
         {
-          type = "colors";
-          paddingLeft = 6;
-          symbol = "circle";
-        }
-      ];
-
-    };
-  };
+          "type": "memory",
+          "key": "{#90}│ {#91}Memory      {#90}│",
+          "format": "{$3}{used} / {total} ({percentage})",
+        },
+        {
+          "type": "disk",
+          "key": "{#90}│ {#91}Disk        {#90}│",
+          "format": "{$3}{size-used} / {size-used} ({size-percentage})",
+        },
+        {
+          "type": "poweradapter",
+          "key": "{#90}│ {#91}Power       {#90}│",
+          "format": "{$3}{name}",
+        },
+        {
+          "type": "terminal",
+          "key": "{#90}│ {#95}Terminal    {#90}│",
+          "format": "{$3}{pretty-name} {#2}[{version}]",
+        },
+        {
+          "type": "terminalfont",
+          "key": "{#90}│ {#95}Font        {#90}│",
+          "format": "{$3}{name}  {#2}[{size}]",
+        },
+        {
+          "type": "shell",
+          "key": "{#90}│ {#95}Shell       {#90}│",
+          "format": "{$3}{exe-name}  {#2}[v{version}] {#2}[PID:{pid}]",
+        },
+        {
+          "type": "command",
+          "key": "{#90}│ {#95}Theme       {#90}│",
+          "text": ".config/fastfetch/theme",
+          "format": "{$3}{result}  {#2}[Base16-Scheme]"
+        },
+        {
+          "type": "custom",
+          "key": "{#90}╰─────────────╯",
+          "format": "{#90}╰────────────────────────────────────────────────────────────╯",
+        },
+      ],
+    }
+  '';
 }

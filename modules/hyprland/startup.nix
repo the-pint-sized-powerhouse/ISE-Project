@@ -1,4 +1,4 @@
-{
+{userSettings, ...}: {
   wayland.windowManager.hyprland.settings.exec-once = [
     "sleep 4"
     "dbus-update-activation-environment --system --all"
@@ -14,6 +14,9 @@
     "pkexec swayosd-libinput-backend &"
     "swayosd-server &"
     "foot cava"
-    "hypridle"
+    "pkill waybar"
+    "waybar &"
+    "npx http-server ~/.dotfiles/modules/firefox/chevron"
+    "discover-overlay"
   ];
 }

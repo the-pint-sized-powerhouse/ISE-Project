@@ -1,9 +1,9 @@
 {
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
-    "$terminal" = "kitty";
+    "$terminal" = "kitty fish";
     "$filemanager" = "nautilus";
-    "$browser" = "librewolf";
+    "$browser" = "firefox";
     bind = [
       "$mainMod, Q, exec, $terminal"
       "$mainMod, C, killactive"
@@ -12,6 +12,7 @@
       "$mainMod, J, togglesplit, # dwindle"
       "$mainMod, W, exec, $browser"
       "$mainMod, X, fullscreen, 0"
+      "$mainMod, K, exec, wl-copy < ~/.dotfiles/scripts/tester"
 
       "$mainMod, left, movefocus, l"
       "$mainMod, right, movefocus, r"
@@ -24,11 +25,17 @@
       "$mainMod SHIFT, down, swapwindow, d"
 
       "$mainMod, 1, workspace, 1"
+      "bind = $mainMod, 1 , exec, hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name' | sed 's/special://' | xargs -I [] hyprctl dispatch togglespecialworkspace []"
       "$mainMod, 2, workspace, 2"
+      "bind = $mainMod, 2 , exec, hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name' | sed 's/special://' | xargs -I [] hyprctl dispatch togglespecialworkspace []"
       "$mainMod, 3, workspace, 3"
+      "bind = $mainMod, 3 , exec, hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name' | sed 's/special://' | xargs -I [] hyprctl dispatch togglespecialworkspace []"
       "$mainMod, 4, workspace, 4"
+      "bind = $mainMod, 4 , exec, hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name' | sed 's/special://' | xargs -I [] hyprctl dispatch togglespecialworkspace []"
       "$mainMod, 5, workspace, 5"
+      "bind = $mainMod, 5 , exec, hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name' | sed 's/special://' | xargs -I [] hyprctl dispatch togglespecialworkspace []"
       "$mainMod, 6, workspace, 6"
+      "bind = $mainMod, 6 , exec, hyprctl monitors -j | jq -r '.[] | select(.focused == true) | .specialWorkspace.name' | sed 's/special://' | xargs -I [] hyprctl dispatch togglespecialworkspace []"
 
       "$mainMod, 1, exec, pypr hide '*'"
       "$mainMod, 2, exec, pypr hide '*'"
@@ -50,6 +57,7 @@
       "$mainMod, code:20, exec, pypr toggle email"
       "$mainMod, code:21, exec, pypr toggle spotify"
       "$mainMod, M, exec, pypr toggle calculator"
+
       "$mainMod, L, exec, pkill wlogout || wlogout"
       "$mainMod, U, exec, ~/.dotfiles/scripts/hypr-powersaver-on"
       "$mainMod, I, exec, ~/.dotfiles/scripts/hypr-powersaver-off"
@@ -77,6 +85,8 @@
       ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
 
       "$mainMod, semicolon, exec, emote"
+
+      "$mainMod, TAB, hyprexpo:expo, toggle"
     ];
 
     binde = [

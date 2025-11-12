@@ -1,9 +1,9 @@
-{
+{userSettings, ...}: {
   programs.nixcord = {
     enable = true;
     quickCss = "
       :root {
-        --font: '0xProto Nerd Font';
+        --font: '${userSettings.fontSerif}';
       }
 
       ::placeholder, body, button, input, select, textarea {

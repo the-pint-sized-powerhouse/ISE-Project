@@ -1,41 +1,32 @@
-{ pkgs, pkgs-unstable, ... }:
-
 {
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
   environment.systemPackages =
     (with pkgs; [
-      cartridges
       liquidctl
-      openrazer-daemon
       polychromatic
+      protontricks
       protonup
       openrgb-with-all-plugins
-      cartridges
     ])
     ++ (with pkgs-unstable; [
-      adwsteamgtk
       lm_sensors
       vintagestory
     ]);
 
-  services.flatpak = {
-    packages = [
-    ];
-  };
+  #services.flatpak = {
+  #packages = [];
+  #};
 
   programs = {
     coolercontrol = {
       enable = true;
+      nvidiaSupport = true;
     };
-    steam = {
-      enable = true;
-      gamescopeSession = {
-        enable = true;
-      };
-    };
-    gamemode = {
-      enable = true;
-    };
-
+    gamemode.enable = true;
+    steam.enable = true;
     gamescope = {
       enable = true;
       capSysNice = true;

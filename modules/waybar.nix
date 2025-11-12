@@ -1,18 +1,17 @@
-{ config, ... }:
-
 {
+  config,
+  userSettings,
+  ...
+}: {
   programs.waybar = {
     enable = true;
-    systemd = {
-      enable = true;
-    };
     settings = [
       {
         "layer" = "top";
         "position" = "top";
         "margin-left" = 6;
         "margin-right" = 6;
-        "margin-top" = 2;
+        "margin-top" = 1;
         "exclusive" = true;
         "passthrough" = false;
         "reload_style_on_change" = true;
@@ -20,7 +19,7 @@
         "modules-left" = [
           "custom/launcher"
           "hyprland/workspaces"
-          "custom/music"
+          "mpris"
         ];
         "modules-center" = [
           "clock#clock1"
@@ -89,25 +88,26 @@
             "󰁹"
           ];
         };
-
-        "custom/music" = {
-          "format" = "{icon}{}";
-          "format-icons" = {
-            "Playing" = "󰝚 ";
-            "Paused" = "󰝛 ";
-            "Stopped" = " ";
+        "mpris" = {
+          "format" = "{status_icon} {dynamic}";
+          "interval" = 0.5;
+          "dynamic-len" = 50;
+          "status-icons" = {
+            "playing" = "󰝚 ";
+            "paused" = "󰝛 ";
+            "stopped" = " ";
           };
-          "escape" = true;
-          "tooltip" = true;
-          "exec" = "~/.dotfiles/scripts/caway -b 10 -f 60 -e";
-          "return-type" = "json";
+          "dynamic-order" = [
+            "title"
+            "artist"
+          ];
+          "dynamic-separator" = "  ";
+          "max-length" = 24;
           "on-click" = "playerctl play-pause";
           "on-scroll-up" = "playerctl previous";
           "on-scroll-down" = "playerctl next";
           "on-click-right" = "g4music";
-          "max-length" = 24;
         };
-
         "pulseaudio" = {
           "format" = "{icon} {volume}%";
           "format-muted" = " ";
@@ -207,7 +207,7 @@
           "format" = "{}°";
           "tooltip" = true;
           "interval" = 3600;
-          "exec" = "wttrbar --location New+Ross";
+          "exec" = "wttrbar --location Beaumont+Dublin";
           "return-type" = "json";
         };
       }
@@ -224,6 +224,7 @@
         ];
         "custom/day" = {
           "exec" = "date +'%^A'";
+          #"exec" = "date +'%A'";
           "format" = "{}";
         };
       }
@@ -232,7 +233,7 @@
         "layer" = "bottom";
         "reload_style_on_change" = true;
         "position" = "top";
-        "margin-top" = 240;
+        "margin-top" = 220;
         "passthrough" = true;
 
         "modules-center" = [
@@ -248,7 +249,7 @@
         "layer" = "bottom";
         "reload_style_on_change" = true;
         "position" = "top";
-        "margin-top" = 275;
+        "margin-top" = 255;
         "passthrough" = true;
 
         "modules-center" = [
@@ -261,192 +262,193 @@
       }
     ];
     style = with config.lib.stylix.colors; ''
-        * {
-            font-family: "0xProto Nerd Font";
-            font-size: 13px;
-            min-height: 0;
-            padding: 0;
-            margin: 0;
-          }
+      * {
+          font-family: "${userSettings.fontMono}";
+          font-size: 13px;
+          min-height: 0;
+          padding: 0;
+          margin: 0;
+        }
 
-          #waybar {
-            background: transparent;
-            color: #${base05-hex};
-            margin: 5px 5px;
-            opacity: 0.9;
-          }
+        #waybar {
+          background: transparent;
+          color: #${base05-hex};
+          margin: 5px 5px;
+          opacity: 0.9;
+        }
 
-          #workspaces {
-            border-radius: 0px 1rem 1rem 0px;
-            margin: 5px;
-            background-color: rgba(${base02-rgb-r}, ${base02-rgb-g}, ${base02-rgb-b}, 0.8);
-            margin-left: 0rem;
-            margin-right: 1rem;
-          }
+        #workspaces {
+          border-radius: 0px 1rem 1rem 0px;
+          margin: 5px;
+          background-color: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.9);
+          margin-left: 0rem;
+          margin-right: 1rem;
+        }
 
-          #workspaces button {
-            color: #${base07-hex};
-            border-radius: 1rem;
-            padding: 0.4rem;
-          }
+        #workspaces button {
+          color: #${base07-hex};
+          border-radius: 1rem;
+          padding: 0.4rem;
+        }
 
-          #workspaces button.active {
-            color: #${base0C-hex};
-            border-radius: 1rem;
-          }
+        #workspaces button.active {
+          color: #${base0C-hex};
+          border-radius: 1rem;
+        }
 
-          #workspaces button:hover {
-            color: #${base0C-hex};
-            border-radius: 1rem;
-          }
-          
-          #custom-launcher {
-            color: #${base05-hex};
-            border-radius: 1rem 0px 0px 1rem;
-            margin-left: 6px;
-          }
+        #workspaces button:hover {
+          color: #${base0C-hex};
+          border-radius: 1rem;
+        }
 
-          #custom-launcher:hover {
-            color: #${base0C-hex};
-            border-radius: 1rem 0px 0px 1rem;
-          }
+        #custom-launcher {
+          color: #${base05-hex};
+          border-radius: 1rem 0px 0px 1rem;
+          margin-left: 6px;
+        }
 
-          #tray,
-          #backlight,
-          #clock.clock1,
-          #battery,
-          #pulseaudio,
-          #cpu,
-          #custom-weather.main,
-          #custom-music,
-          #music,
-          #cava,
-          #memory,
-          #custom-gpu,
-          #network,
-          #custom-launcher,
-          #memory {
-            background-color: rgba(${base02-rgb-r}, ${base02-rgb-g}, ${base02-rgb-b}, 0.8);
-            padding: 0.5rem 0.75rem;
-            margin: 5px 0;
-          }
+        #custom-launcher:hover {
+          color: #${base0C-hex};
+          border-radius: 1rem 0px 0px 1rem;
+        }
 
-          #custom-launcher,
-          #custom-notification,
-          #custom-lock,
-          #custom-power {
-            background-color: rgba(${base02-rgb-r}, ${base02-rgb-g}, ${base02-rgb-b}, 0.8);
-            padding: 0.5rem 1rem;
-            margin: 5px 0;
-          }
+        #tray,
+        #backlight,
+        #clock.clock1,
+        #battery,
+        #pulseaudio,
+        #cpu,
+        #custom-weather.main,
+        #mpris,
+        #music,
+        #cava,
+        #memory,
+        #custom-gpu,
+        #network,
+        #custom-launcher,
+        #memory {
+          background-color: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.9);
+          padding: 0.5rem 0.75rem;
+          margin: 5px 0;
+        }
 
-          #clock.clock1 {
-            color: #${base07-hex};
-            border-radius: 1rem 0px 0px 1rem;
-          }
+        #custom-launcher,
+        #custom-notification,
+        #custom-lock,
+        #custom-power {
+          background-color: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.9);
+          padding: 0.5rem 1rem;
+          margin: 5px 0;
+        }
 
-          #custom-weather.main {
-            color: #${base0F-hex};
-        	  border-radius: 0px 1rem 1rem 0px;
-          }
+        #clock.clock1 {
+          color: #${base07-hex};
+          border-radius: 1rem 0px 0px 1rem;
+        }
 
-          #battery {
-            color: #${base0B-hex};
-          }
-          
-          #battery.charging {
-            color: #${base0B-hex};
-          }
+        #custom-weather.main {
+          color: #${base0F-hex};
+      	  border-radius: 0px 1rem 1rem 0px;
+        }
 
-          #battery.warning:not(.charging) {
-            color: #${base0A-hex};
-          }
+        #battery {
+          color: #${base0B-hex};
+        }
 
-          #battery.critical:not(.charging) {
-            color: #${base08-hex};
-          }
+        #battery.charging {
+          color: #${base0B-hex};
+        }
 
-          #backlight {
-            color: #${base09-hex};
-          }
+        #battery.warning:not(.charging) {
+          color: #${base0A-hex};
+        }
 
-          #pulseaudio {
-            color: #${base08-hex};
-            border-radius: 1rem 0px 0px 1rem;
-            margin-left: 1rem;
-          }
+        #battery.critical:not(.charging) {
+          color: #${base08-hex};
+        }
 
-          #custom-notification {
-      	    border-radius: 1rem 0px 0px 1rem;
-      	    color: #${base0F-hex};
-          }
+        #backlight {
+          color: #${base09-hex};
+        }
 
-          #custom-lock {
-            border-radius: 0rem 0px 0px 0rem;
-            color: #${base07-hex};
-          }
+        #pulseaudio {
+          color: #${base08-hex};
+          border-radius: 1rem 0px 0px 1rem;
+          margin-left: 1rem;
+        }
 
-          #custom-power {
-            border-radius: 0px 1rem 1rem 0px;
-            color: #${base08-hex};
-          }
+        #custom-notification {
+         border-radius: 1rem 0px 0px 1rem;
+         color: #${base0F-hex};
+        }
 
-          #network {
-      	    border-radius: 0rem 0px 0px 0rem;
-      	    color: #${base07-hex};
-          }
+        #custom-lock {
+          border-radius: 0rem 0px 0px 0rem;
+          color: #${base07-hex};
+        }
 
-          #memory {
-      	    color: #${base0E-hex};
-      	    border-radius: 0px 1rem 1rem 0px;
-      	    margin-right: 1rem;
-          }
+        #custom-power {
+          border-radius: 0px 1rem 1rem 0px;
+          color: #${base08-hex};
+        }
 
-          #custom-gpu {
-      	    color: #${base0A-hex};
-          }
+        #network {
+         border-radius: 0rem 0px 0px 0rem;
+         color: #${base07-hex};
+        }
 
-          #cpu {
-        	  color: #${base07-hex};
-          }
+        #memory {
+         color: #${base0E-hex};
+         border-radius: 0px 1rem 1rem 0px;
+         margin-right: 1rem;
+        }
 
-          #custom-music.Playing {
-            background: rgba(${base02-rgb-r}, ${base02-rgb-g}, ${base02-rgb-b}, 0.8);
+        #custom-gpu {
+         color: #${base0A-hex};
+        }
 
-            color: #${base0E-hex};
-            border-radius: 1rem;
-          }
+        #cpu {
+      	  color: #${base07-hex};
+        }
 
-          #custom-music.Paused,
-          #custom-music.Stopped {
-            background: rgba(${base02-rgb-r}, ${base02-rgb-g}, ${base02-rgb-b}, 0.8);
+        #mpris.playing {
+          background: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.9);
 
-            color: #${base05-hex};
-            border-radius: 1rem;
-          }
+          color: #${base0E-hex};
+          border-radius: 1rem;
+        }
 
-          #cava {
-            color: #${base05-hex};
-            border-radius: 0px 1rem 1rem 0px;
-          }
+        #mpris.paused,
+        #mpris.stopped {
+          background: rgba(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b}, 0.9);
 
-          #custom-day {
-            font-family: "anurati";
-            font-size: 80px;
-            color: #${base07-hex};
-            letter-spacing: 50px;
-          }
+          color: #${base05-hex};
+          border-radius: 1rem;
+        }
 
-          #clock.date {
-            color: #${base07-hex};
-            font-size: 20px;
-            font-weight: bold;
-          }
-          #clock.time {
-            color: #${base07-hex};
-            font-size: 15px;
-            font-weight: bold;
-          }
+        #cava {
+          color: #${base05-hex};
+          border-radius: 0px 1rem 1rem 0px;
+        }
+
+        #custom-day {
+          font-family: "anurati";
+          font-size: 60px;
+          letter-spacing: 30px;
+          /*letter-spacing: 5px;*/
+          color: #${base07-hex};
+        }
+
+        #clock.date {
+          color: #${base07-hex};
+          font-size: 20px;
+          font-weight: bold;
+        }
+        #clock.time {
+          color: #${base07-hex};
+          font-size: 15px;
+          font-weight: bold;
+        }
     '';
   };
 
