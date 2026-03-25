@@ -1,9 +1,13 @@
 {
   programs.nixvim = {
     plugins = {
-      lsp-format.enable = true;
+      lsp-format = {
+        enable = true;
+        autoLoad = true;
+      };
       lsp = {
         enable = true;
+        autoLoad = true;
         inlayHints = true;
         servers = {
           bashls.enable = true;

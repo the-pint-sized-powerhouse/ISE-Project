@@ -1,19 +1,19 @@
 /* Onest (default font) */
 @font-face {
-  font-family: 'Onest';
-  src: url('./fonts/Onest/OnestMedium.ttf');
+  font-family: "Onest";
+  src: url("./fonts/Onest/OnestMedium.ttf");
 }
 @font-face {
-  font-family: 'Onest Bold';
-  src: url('./fonts/Onest/OnestExtraBold.ttf');
+  font-family: "Onest Bold";
+  src: url("./fonts/Onest/OnestExtraBold.ttf");
 }
 @font-face {
-  font-family: 'Onest Light';
-  src: url('./fonts/Onest/OnestThin.ttf');
+  font-family: "Onest Light";
+  src: url("./fonts/Onest/OnestThin.ttf");
 }
 
 :root {
-  --font: 'Onest Bold'
+  --font: "Onest Bold";
 }
 
 /* Blogger Sans */
@@ -68,3 +68,4 @@
   src: url('./fonts/Public Sans/PublicSans-Regular.ttf');
 } 
 */
+

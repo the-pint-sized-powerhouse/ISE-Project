@@ -1,7 +1,6 @@
 {
-  programs.nixvim.globals.mapleader = ";";
-
   programs.nixvim = {
+    globals.mapleader = ";";
     keymaps = [
       {
         mode = [

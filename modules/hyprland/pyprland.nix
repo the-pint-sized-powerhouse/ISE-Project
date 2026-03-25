@@ -1,6 +1,6 @@
 {
   home.file = {
-    ".config/hypr/pyprland.toml" = {
+    ".config/pypr/config.toml" = {
       text = ''
         [pyprland]
         plugins = [ "scratchpads" ]
@@ -29,7 +29,7 @@
 
         [scratchpads.timetable]
         animation = "fromTop"
-        command = "imv ~/School/School-TimetableV2.png"
+        command = "imv ~/School/school-timetable.png"
         class = "imv"
         size = "90% 90%"
         lazy = true
@@ -48,12 +48,12 @@
         size = "90% 90%"
         lazy = true
 
-        [scratchpads.discord]
-        animation = "fromTop"
-        command = "discord --force-device-scale-factor=1.5"
-        class = "discord"
-        size = "90% 90%"
-        lazy = true
+        #[scratchpads.discord]
+        #animation = "fromTop"
+        #command = "vesktop"
+        #class = "vesktop"
+        #size = "90% 90%"
+        #lazy = true
       '';
     };
   };

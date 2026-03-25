@@ -1,8 +1,6 @@
 {
   programs.nixvim.config = {
-    clipboard = {
-      providers.wl-copy.enable = true;
-    };
+    clipboard.providers.wl-copy.enable = true;
 
     extraConfigLuaPost = ''
       vim.wo.fillchars='eob: '

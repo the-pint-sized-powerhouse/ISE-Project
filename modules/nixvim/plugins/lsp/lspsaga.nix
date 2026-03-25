@@ -2,6 +2,7 @@
   programs.nixvim = {
     plugins.lspsaga = {
       enable = true;
+      autoLoad = true;
       settings = {
         beacon.enable = true;
         ui = {

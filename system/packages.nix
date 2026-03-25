@@ -2,99 +2,67 @@
   pkgs,
   pkgs-unstable,
   userSettings,
-  inputs,
   ...
 }: {
   # -------- STABLE ------- #
   environment.systemPackages =
     (with pkgs; [
-      kdePackages.ark
-      bat
+      woeusb
+      woeusb-ng
+      mediawriter
+      wget
       base16-schemes
       black
-      btop
       calligraphy
-      cava
       celluloid
       discover-overlay
+      fastfetch
       kdePackages.dolphin
       emote
-      mediainfo
-      fastfetch
-      firefox
-      firefoxpwa
-      foot
       fragments
-      fzf
-      git
       gparted
-      imv
-      kitty
+      hunspell
       jq
-      kdePackages.qt6ct
+      kdePackages.ark
+      kitty
       libreoffice-qt6-fresh
-      libsForQt5.qt5ct
-      lsd
-      mpv
+      mediainfo
+      hunspell
+      hunspellDicts.en_GB-ise
       nautilus
+      neovim
       nix-du
       nix-unit
       ntfs3g
       pavucontrol
-      playerctl
       pokeget-rs
-      pyprland
-      python
+      prismlauncher
       python3
       quickgui
       ripgrep
-      spotify
-      swaynotificationcenter
-      swayosd
-      swww
       thunderbird
       tldr
       udisks
-      ulauncher
       unzip
       usbutils
       vencord
       volctl
-      waybar
-      waypaper
-      wdisplays
       wev
       which
       wl-clipboard
-      wlogout
       yazi
       zapzap
-      zathura
-      zed-editor
       zip
+      nodejs_latest
+      pandoc
     ])
     # ----- UNSTABLE ----- #
     ++ (with pkgs-unstable; [
-      alejandra
       discord
-      gopls
-      hclfmt
       hyprpolkitagent
-      hyprshot
       lua
-      markdown-oxide
       nchat
-      neovim-unwrapped
-      nixd
-      nixfmt-rfc-style
       nix-output-monitor
-      prettierd
-      pyright
-      basedpyright
-      stylua
-      wttrbar
-      yamllint
-      yamlfmt
     ])
     # ----- PYTHON-PACKAGES ----- #
     ++ (with pkgs.python312Packages; [
@@ -102,16 +70,6 @@
       python-lsp-server
       pip
       psutil
-    ])
-    # --------- FISH PLUGINS --------- #
-    ++ (with pkgs-unstable.fishPlugins; [
-      autopair
-      colored-man-pages
-      done
-      hydro
-      puffer
-      sponge
-      transient-fish
     ]);
 
   services.flatpak.packages = [
@@ -124,10 +82,6 @@
   ];
 
   programs = {
-    hyprland = {
-      enable = true;
-      xwayland.enable = true;
-    };
     nh = {
       enable = true;
       clean.enable = true;
@@ -142,16 +96,11 @@
       enable = true;
       package = pkgs.mtr;
     };
-    gnupg = {
-      agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
-    nix-index-database = {
-      comma.enable = true;
-    };
-    # ----- temp ----- #
+    nix-index-database.comma.enable = true;
     steam.enable = true;
     gamemode.enable = true;
     gamescope = {

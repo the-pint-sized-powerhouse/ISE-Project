@@ -1,14 +1,12 @@
 {
   inputs = {
     # ----- NIX PACKAGES ----- #
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:/nixos/nixpkgs/master";
 
     # ----- NIXOS-HARDWARE ----- #
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # ----- NIX-USER-REPOSITORY ----- #
     nur = {
@@ -18,8 +16,7 @@
 
     # ----- HOME-MANAGER ----- #
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      #url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,21 +28,18 @@
 
     # ----- STYLIX ----- #
     stylix = {
-      url = "github:nix-community/stylix/release-25.05";
-      #url = "github:nix-community/stylix";
+      url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # ----- NIXVIM ----- #
     nixvim = {
-      url = "github:nix-community/nixvim/main";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:nix-community/nixvim/nixos-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # ------ NIX DECLERATIVE FLATPAKS ----- #
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak/latest";
-    };
+    # ------ NIX-FLATPAKS ----- #
+    nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
 
     # ----- SPICETIFY ------ #
     spicetify-nix = {
@@ -58,14 +52,7 @@
       url = "github:kaylorben/nixcord/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # ----- ZEN-BROWSER ----- #
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
-
   outputs = inputs @ {
     nixpkgs,
     home-manager,
@@ -78,7 +65,6 @@
     spicetify-nix,
     nixcord,
     nixos-hardware,
-    zen-browser,
     ...
   }: let
     systemSettings = {
@@ -92,7 +78,7 @@
       username = "fionnbennett";
       name = "Fionn Bennett";
       email = "fionnbennett06@gmail.com";
-      theme = "tokyodark";
+      theme = "uwunicorn";
       fontPkg = "nerd-fonts.caskaydia-cove";
       fontSerif = "CaskaydiaCove NF";
       fontMono = "CaskaydiaCove NF";
@@ -101,9 +87,7 @@
     };
 
     inherit (nixpkgs) lib;
-
     system = "x86_64-linux";
-
     pkgs = import nixpkgs {
       inherit system;
       config = {
@@ -194,7 +178,7 @@
           nixvim.homeModules.nixvim
           stylix.homeModules.stylix
           spicetify-nix.homeManagerModules.default
-          zen-browser.homeModules.twilight-official
+          nixcord.homeModules.nixcord
         ];
         extraSpecialArgs = {
           inherit inputs;
@@ -210,11 +194,10 @@
         modules = [
           ./home.nix
           ./modules/hyprland/variables-laptop.nix
-          nixvim.homeManagerModules.nixvim
+          nixvim.homeModules.nixvim
           stylix.homeModules.stylix
-          spicetify-nix.homeModules.default
+          spicetify-nix.homeManagerModules.default
           nixcord.homeModules.nixcord
-          zen-browser.homeModules.twilight-official
         ];
         extraSpecialArgs = {
           inherit inputs;

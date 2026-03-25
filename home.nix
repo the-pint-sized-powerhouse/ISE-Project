@@ -1,112 +1,111 @@
 {userSettings, ...}: {
   imports = [
-    # ------ AERC ------ #
+    # ----- AERC ----- #
     ./modules/aerc.nix
-
-    # ------- BAT ------- #
+    # ----- BAT ----- #
     ./modules/bat.nix
 
-    # ------ BOTTOM ----- #
-    ./modules/bottom.nix
-
-    # ------- BTOP ------- #
+    # ----- BTOP ----- #
     ./modules/btop.nix
 
-    # -------- CAVA -------- #
+    # ----- CAVA ----- #
     ./modules/cava.nix
 
     # ----- CHROMIUM ----- #
     ./modules/chromium.nix
 
-    # ------- FASTFETCH -------- #
+    # ----- FASTFETCH ----- #
     ./modules/fastfetch.nix
 
-    # --------- FIREFOX ----------- #
+    # ----- FIREFOX ----- #
     ./modules/firefox/firefox.nix
 
-    # ----------- FISH ------------- #
+    # ----- FISH ----- #
     ./modules/fish.nix
 
-    # ---- FONTS ---- #
+    # ----- FOLIATE ----- #
+    ./modules/foliate.nix
+
+    # ----- FONTS ----- #
     ./fonts/fonts.nix
 
-    # ---------- FOOT ------------ #
+    # ----- FOOT ----- #
     ./modules/foot.nix
 
-    # ------------ FZF ------------- #
+    # ----- FZF ----- #
     ./modules/fzf.nix
 
-    # ---------- GIT --------------#
+    # ----- GIT ----- #
     ./modules/git.nix
 
-    # ----- GITUI ------ #
-    ./modules/gitui.nix
-
-    # ---------- GTK ------------- #
+    # ----- GTK ----- #
     ./modules/gtk.nix
 
-    # -------------- HOME-SETTINGS ------ #
+    # ----- HOME-SETTINGS ----- #
     ./modules/home-settings.nix
 
-    # ------------- HYPRLAND ---------- #
+    # ----- HYPRLAND ----- #
     ./modules/hyprland/hyprland.nix
 
-    # ---------- IMV ----------- #
+    # ----- IMV ----- #
     ./modules/imv.nix
 
-    # ----------- KITTY  ------------- #
+    # ----- KITTY  ----- #
     ./modules/kitty.nix
+
+    # ----- LAZYGIT ----- #
+    ./modules/lazygit.nix
 
     # ----- MICROSOFT-OFFICE ----- #
     ./applications/microsoft-office/office.nix
 
+    # ----- LUTRIS ------ #
+    ./modules/lutris.nix
+
     # ----- MPV ----- #
     ./modules/mpv.nix
 
-    # --------- NIXVIM --------- #
+    # ----- VESKTOP ----- #
+    ./modules/vesktop.nix
+
+    # ----- NIXVIM ----- #
     ./modules/nixvim/nixvim.nix
 
-    # ---------- OBS-STUDIO ------------ #
+    # ----- OBS-STUDIO ----- #
     ./modules/obs-studio.nix
 
-    # ---------- QT ----------- #
+    # ----- QT ----- #
     ./modules/qt.nix
 
-    # ------- SPICETIFY ------ #
+    # ----- SPICETIFY ----- #
     ./modules/spicetify.nix
 
-    # ------- STYLIX ----------- #
-    ./themes/home/stylix.nix
-    ./themes/home/${userSettings.theme}.nix
+    # ----- STYLIX ----- #
+    ./themes/home.nix
 
-    # ----- SWAYOSD ----- #
-    ./modules/swayosd/swayosd.nix
-
-    # --------- SWAYNC --------- #
+    # ----- SWAYNC ----- #
     ./modules/swaync.nix
 
-    # --------- ULAUNCHER --------- #
+    # ----- ULAUNCHER ----- #
     ./modules/ulauncher/ulauncher.nix
 
     # ----- VIRTUALISATION ----- #
     ./modules/virtualisation.nix
 
-    # ---------- WAYBAR ----------- #
+    # ----- WAYBAR ----- #
     ./modules/waybar.nix
 
-    # -------- WLOGOUT -------- #
+    # ----- WLOGOUT ----- #
     ./modules/wlogout/wlogout.nix
 
-    # --------- YAZI ------------ #
-    ./modules/yazi/yazi.nix
+    # ----- YAZI ----- #
+    ./modules/yazi.nix
 
-    # --------- ZATHURA ---------- #
+    # ----- ZATHURA ----- #
     ./modules/zathura.nix
 
-    # ---- ZED ----- #
+    # ----- ZED ----- #
     ./modules/zed.nix
-
-    #./modules/zen-browser/zen-browser.nix
   ];
 
   nixpkgs.config = {

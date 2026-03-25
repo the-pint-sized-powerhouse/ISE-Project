@@ -1,8 +1,13 @@
 {
   config,
   userSettings,
+  pkgs,
   ...
 }: {
+  home.packages = with pkgs; [
+    playerctl
+    wttrbar
+  ];
   programs.waybar = {
     enable = true;
     settings = [
@@ -69,9 +74,8 @@
             "critical" = 15;
           };
           "format" = "{icon}{capacity}%";
-          "on-click-right" = "kitty nvim ~/.dotfiles/hosts/laptop/battery.nix";
           "format-charging" = "󰂄{capacity}%";
-          "format-plugged" = "";
+          "format-plugged" = "󱞜";
           "format-alt" = "{icon}{time}";
           "format-icons" = [
             "󰂃"
@@ -102,11 +106,10 @@
             "artist"
           ];
           "dynamic-separator" = "  ";
-          "max-length" = 24;
+          "max-length" = 50;
           "on-click" = "playerctl play-pause";
           "on-scroll-up" = "playerctl previous";
           "on-scroll-down" = "playerctl next";
-          "on-click-right" = "g4music";
         };
         "pulseaudio" = {
           "format" = "{icon} {volume}%";
@@ -158,8 +161,10 @@
             "󰤥"
           ];
           "format-wifi" = "󰤥";
+          #"format-wifi" = "";
           "rotate" = 0;
           "format-ethernet" = "󰈀";
+          #"tooltip-format" = "Disconnected.";
           "tooltip-format" = ''
             Network: <big><b>{essid}</b></big>
             Signal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>
@@ -171,7 +176,6 @@
           "format-linked" = "󰈀 {ifname} (No IP)";
           "format-disconnected" = "";
           "tooltip-format-disconnected" = "Disconnected";
-          "on-click" = "kitty ~/.dotfiles/scripts/wifi-rebuild";
           "interval" = 2;
         };
         "memory" = {
@@ -201,13 +205,13 @@
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
           "format" = "{:%a, %d %b, %I:%M %p}";
-          "on-click" = "pkill waybar; waybar";
+          "on-click" = "~/.dotfiles/scripts/reloader";
         };
         "custom/weather#main" = {
           "format" = "{}°";
           "tooltip" = true;
           "interval" = 3600;
-          "exec" = "wttrbar --location Beaumont+Dublin";
+          "exec" = "wttrbar --location New+Ross";
           "return-type" = "json";
         };
       }

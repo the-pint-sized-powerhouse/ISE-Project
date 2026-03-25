@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   programs.nixvim = {
     plugins.none-ls = {
-      enable = false;
+      enable = true;
+      autoLoad = true;
       enableLspFormat = true;
       settings.updateInInsert = false;
       sources = {
@@ -13,7 +14,7 @@
         formatting = {
           nixfmt = {
             enable = true;
-            package = pkgs.nixfmt-rfc-style;
+            package = pkgs.nixfmt;
           };
           black = {
             enable = true;

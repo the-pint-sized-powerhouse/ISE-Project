@@ -1,11 +1,10 @@
 {
-  programs.nixvim = {
-    enable = true;
-  };
+  programs.nixvim.enable = true;
   imports = [
     ./autocmds.nix
     ./keymaps.nix
     ./plugins.nix
     ./settings.nix
+    ./packages.nix
   ];
 }

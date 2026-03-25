@@ -15,21 +15,20 @@
         resize_on_border = false;
         allow_tearing = true;
         layout = "dwindle";
-        snap = {
-          enabled = true;
-        };
+        snap.enabled = true;
       };
       decoration = {
         rounding = 4;
-        active_opacity = 0.825;
-        inactive_opacity = 0.825;
+        active_opacity = 0.8;
+        inactive_opacity = 0.8;
         fullscreen_opacity = 1;
         blur = {
           enabled = true;
-          size = 2;
-          passes = 3;
+          size = 0;
+          passes = 2;
           noise = 0;
           new_optimizations = false;
+          brightness = 1.5;
           contrast = 1.5;
           xray = false;
         };
@@ -43,7 +42,10 @@
       };
       animations = {
         enabled = true;
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        bezier = [
+          "myBezier, 0.05, 0.9, 0.1, 1.05"
+          #"accel, 0.3, 0, 0.8, 0.15"
+        ];
         animation = [
           "windows, 1, 8, myBezier, slide"
           "windowsOut, 1, 8, default, popin 80%"
@@ -51,6 +53,8 @@
           "borderangle, 1, 8, default"
           "fade, 1, 7, default"
           "workspaces, 1, 6, default"
+          #"hyprfocusIn, 1, 1, accel"
+          #"hyprfocusOut, 1, 1 accel"
         ];
       };
 
@@ -61,9 +65,7 @@
         smart_resizing = false;
       };
 
-      master = {
-        new_status = "master";
-      };
+      master.new_status = "master";
 
       misc = {
         force_default_wallpaper = -1;
@@ -72,12 +74,13 @@
         font_family = "${userSettings.fontSerif}";
         animate_manual_resizes = true;
         close_special_on_empty = true;
-        new_window_takes_over_fullscreen = 2;
         middle_click_paste = false;
+        vfr = true;
       };
       monitor = [
         "DP-2, 1920x1080@240, 0x0, 1"
         "eDP-1, 1920x1080, 0x0, 1"
+        "HDMI-A-2, 1920x1080, 1920x0, 1"
       ];
 
       cursor = {
@@ -86,9 +89,10 @@
         no_warps = true;
         inactive_timeout = 10;
       };
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-      ];
+      #windowrulev2 = [
+      #"suppressevent maximize, class:.*"
+      #];
+      #windowrule = "suppress_event maximize, class:./*";
       xwayland = {
         enabled = true;
         force_zero_scaling = true;

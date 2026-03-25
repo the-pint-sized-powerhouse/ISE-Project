@@ -13,5 +13,7 @@
       size = 16;
     };
     targets.nixos-icons.enable = true;
+    targets.plymouth.enable = true;
+    targets.console.enable = true;
   };
 }

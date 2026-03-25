@@ -1,4 +1,13 @@
 {pkgs, ...}: {
+  home.packages = with pkgs.fishPlugins; [
+    autopair
+    colored-man-pages
+    done
+    hydro
+    puffer
+    sponge
+    transient-fish
+  ];
   programs.fish = {
     enable = true;
     plugins = [

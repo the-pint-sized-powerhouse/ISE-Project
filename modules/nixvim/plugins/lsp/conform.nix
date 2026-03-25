@@ -1,6 +1,7 @@
 {
   programs.nixvim.plugins.conform-nvim = {
     enable = true;
+    autoLoad = true;
     settings = {
       format_on_save = {
         lspFallback = true;

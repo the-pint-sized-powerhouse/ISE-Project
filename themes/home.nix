@@ -4,32 +4,24 @@
   config,
   ...
 }: {
+  imports = [./home/${userSettings.theme}.nix];
   stylix = {
     enable = true;
-    image = ./black.jpg;
     cursor = {
       name = userSettings.cursorName;
       package = pkgs.bibata-cursors;
       size = 16;
     };
     fonts = {
-      serif = {
-        name = "${userSettings.fontMono}";
-      };
-      sansSerif = {
-        name = "${userSettings.fontMono}";
-      };
-      monospace = {
-        name = "${userSettings.fontMono}";
-      };
-      sizes = {
-        terminal = 11;
-      };
+      serif.name = "${userSettings.fontMono}";
+      sansSerif.name = "${userSettings.fontMono}";
+      monospace.name = "${userSettings.fontMono}";
+      sizes.terminal = 11;
     };
     targets = {
       hyprland.enable = false;
       waybar.enable = false;
-      hyprlock.enable = true;
+      hyprlock.enable = false;
       gtk.flatpakSupport.enable = true;
       foot.enable = false;
       xresources.enable = true;

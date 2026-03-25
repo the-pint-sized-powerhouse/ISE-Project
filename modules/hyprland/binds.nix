@@ -9,7 +9,7 @@
       "$mainMod, C, killactive"
       "$mainMod, Y, exec, $filemanager"
       "$mainMod, V, togglefloating,"
-      "$mainMod, J, togglesplit, # dwindle"
+      #"$mainMod, J, togglesplit, # dwindle"
       "$mainMod, W, exec, $browser"
       "$mainMod, X, fullscreen, 0"
       "$mainMod, K, exec, wl-copy < ~/.dotfiles/scripts/tester"
@@ -53,6 +53,7 @@
 
       "$mainMod, 7, exec, pypr toggle timetable"
       "$mainMod, 8, exec, pypr toggle pavucontrol"
+      "$mainMod, 9, exec, pypr toggle discord"
       "$mainMod, 0, exec, pypr toggle whatsapp"
       "$mainMod, code:20, exec, pypr toggle email"
       "$mainMod, code:21, exec, pypr toggle spotify"
@@ -85,8 +86,6 @@
       ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
 
       "$mainMod, semicolon, exec, emote"
-
-      "$mainMod, TAB, hyprexpo:expo, toggle"
     ];
 
     binde = [
@@ -106,7 +105,7 @@
     ];
 
     bindn = [
-      ", v, pass, ^discord$"
+      ", v, pass, class:^(vesktop)$"
       ", Caps_Lock, exec, sleep 0.1; swayosd-client --caps-lock"
     ];
   };

@@ -1,5 +1,6 @@
 {
   networking = {
+    #networkmanager.enable = true;
     wireless = {
       enable = true;
       networks = {
@@ -8,7 +9,7 @@
         Gwayyy.psk = "0512Fionn";
         eir32857982.psk = "WQtAK7D9qF";
         AptusBB-H7399.psk = "53515537703788385559";
-        "Sheelagh Wifi".psk = "WifiPassword2024!";
+        eir39884280.psk = "9U4mmFB4vE";
       };
     };
   };
