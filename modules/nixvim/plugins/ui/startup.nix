@@ -1,4 +1,5 @@
 {
+  # welcome screen for NeoVim
   programs.nixvim.plugins.startup = {
     enable = true;
     settings = {

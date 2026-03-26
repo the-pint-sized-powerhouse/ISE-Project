@@ -1,4 +1,5 @@
 {config, ...}: {
+  # adds statusbar to top of screen
   programs.nixvim = with config.lib.stylix.colors; {
     plugins.lualine = {
       enable = true;

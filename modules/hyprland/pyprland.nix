@@ -1,5 +1,6 @@
 {
   home.file = {
+    # wraps .toml file in nix code, used to print configuration for pyprland scratchpads
     ".config/pypr/config.toml" = {
       text = ''
         [pyprland]

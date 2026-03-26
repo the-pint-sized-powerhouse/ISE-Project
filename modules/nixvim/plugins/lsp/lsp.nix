@@ -1,4 +1,5 @@
 {
+  # adds language servers to NeoVim, allows for syntax highlighting
   programs.nixvim = {
     plugins = {
       lsp-format = {

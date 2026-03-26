@@ -1,4 +1,5 @@
 {
+  # imports plugin modules
   imports = [
     # Completions
     ./plugins/cmp/autopairs.nix
@@ -22,7 +23,6 @@
 
     # Markdown
     ./plugins/markdown/markdown-preview.nix
-    ./plugins/markdown/render-markdown.nix
     ./plugins/markdown/bullets.nix
 
     # UI plugins

@@ -1,4 +1,5 @@
 {
+  # adds automatic code formatting to NeoVim
   programs.nixvim.plugins.conform-nvim = {
     enable = true;
     autoLoad = true;

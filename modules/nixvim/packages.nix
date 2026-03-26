@@ -1,4 +1,5 @@
 {pkgs-unstable, ...}: {
+  # packages that are essential for my NeoVim IDE
   home.packages = with pkgs-unstable; [
     alejandra
     gopls

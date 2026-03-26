@@ -1,4 +1,5 @@
 {
+  # adds code completions
   programs.nixvim = {
     plugins = {
       cmp-emoji.enable = true;

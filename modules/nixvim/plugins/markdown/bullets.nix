@@ -1,4 +1,5 @@
 {
+  # adds automatic bullet points to markdown files
   programs.nixvim.plugins.bullets = {
     enable = true;
     settings = {

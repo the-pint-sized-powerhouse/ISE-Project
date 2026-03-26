@@ -1,4 +1,5 @@
 {
+  # makes colour codes the colour of their code
   programs.nixvim.plugins.colorizer = {
     enable = true;
     autoLoad = true;

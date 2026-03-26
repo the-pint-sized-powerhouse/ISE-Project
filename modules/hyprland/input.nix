@@ -1,4 +1,5 @@
 {
+  # sets input settings such as mouse sensitivity, acceleration and gesture control
   wayland.windowManager.hyprland.settings = {
     input = {
       kb_layout = "ie";

@@ -1,7 +1,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    xwayland.enable = true; # enables x11 support
   };
   imports = [
     ./binds.nix

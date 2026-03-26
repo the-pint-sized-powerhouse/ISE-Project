@@ -1,4 +1,5 @@
 {
+  # sets keybindings for NeoVim
   programs.nixvim = {
     globals.mapleader = ";";
     keymaps = [

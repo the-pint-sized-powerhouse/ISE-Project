@@ -1,4 +1,5 @@
 {
+  # adds JSON schemas
   programs.nixvim.plugins.schemastore = {
     enable = true;
     json.enable = true;

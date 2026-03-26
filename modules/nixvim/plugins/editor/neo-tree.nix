@@ -1,4 +1,5 @@
 {
+  # adds file explorer to leftside of screen
   programs.nixvim = {
     plugins.neo-tree = {
       enable = true;

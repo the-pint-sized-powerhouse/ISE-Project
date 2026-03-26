@@ -1,4 +1,5 @@
 {
+  # NeoVim settings such as amount of indentation and clipboard settings
   programs.nixvim.config = {
     clipboard.providers.wl-copy.enable = true;
 

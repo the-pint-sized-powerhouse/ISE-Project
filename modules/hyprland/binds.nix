@@ -1,4 +1,5 @@
 {
+  # set binds for Hyprland
   wayland.windowManager.hyprland.settings = {
     "$mainMod" = "SUPER";
     "$terminal" = "kitty fish";

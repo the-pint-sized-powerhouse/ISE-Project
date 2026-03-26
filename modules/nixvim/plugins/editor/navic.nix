@@ -1,4 +1,5 @@
 {
+  # adds statusbar to neovim
   programs.nixvim.plugins.navic = {
     enable = true;
     settings = {

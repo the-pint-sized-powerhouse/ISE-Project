@@ -1,4 +1,5 @@
 {
+  # commands to be executed upon opening a new instance of NeoVim
   programs.nixvim.config.autoCmd = [
     {
       command = "set laststatus=0";

@@ -3,6 +3,7 @@
   pkgs-master,
   ...
 }: {
+  # essentail packages for my desktop environment to function
   home.packages =
     (with pkgs; [
       ulauncher

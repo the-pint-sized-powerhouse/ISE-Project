@@ -1,4 +1,5 @@
 {
+  # sets Hyprland environment variables
   wayland.windowManager.hyprland.settings.env = [
     "HYPRCURSOR_SIZE,14"
     "QT_QPA_PLATFORM,wayland;xcb"

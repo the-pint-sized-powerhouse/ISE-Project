@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # adds inline diagnostics to code
   programs.nixvim = {
     plugins.none-ls = {
       enable = true;

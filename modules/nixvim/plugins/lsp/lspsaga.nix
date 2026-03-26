@@ -1,4 +1,5 @@
 {
+  # enchances NeoVims lsp
   programs.nixvim = {
     plugins.lspsaga = {
       enable = true;

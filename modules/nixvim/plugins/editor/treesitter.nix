@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # adds abstraction layer to NeoVim
   programs.nixvim.plugins.treesitter = {
     enable = true;
     settings = {
