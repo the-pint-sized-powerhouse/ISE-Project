@@ -4,6 +4,7 @@
   userSettings,
   ...
 }: {
+  # User settings such as system shell and groups
   users.users.${userSettings.username} = {
     shell = pkgs.fish;
     isNormalUser = true;
@@ -15,6 +16,7 @@
       "libvirtd"
     ];
   };
+  # Sets environment settings such as default editors and Display Manager hinting
   environment = {
     variables = {
       EDITOR = "nvim";
@@ -31,18 +33,21 @@
     };
   };
   fonts.packages = [
+    # System font packages
     pkgs.nerd-fonts.caskaydia-cove
     pkgs.nerd-fonts._0xproto
+    pkgs.nerd-fonts.symbols-only
     pkgs.corefonts
     pkgs.vista-fonts
-    pkgs.nerd-fonts.symbols-only
   ];
 
   fonts.fontconfig.defaultFonts = {
+    # Sets default fonts using the variables set in the flake.nix file
     serif = ["${userSettings.fontSerif}"];
     sansSerif = ["${userSettings.fontSerif}"];
     monospace = ["${userSettings.fontMono}"];
   };
+  # Bootloader settings
   boot = {
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages;
@@ -56,10 +61,11 @@
         devices = ["nodev"];
         efiSupport = true;
         configurationLimit = 15;
-        useOSProber = true;
+        useOSProber = true; # Scans drives for other operating system, allows for launching Windows 10 dual boot from within Grub Launcher
       };
     };
   };
+  # Locale settings, locale is imported from variable set in flake.nix
   time.timeZone = systemSettings.timezone;
   i18n = {
     defaultLocale = "${systemSettings.locale}";
@@ -81,6 +87,7 @@
     };
   };
   console.keyMap = "us";
+  # Nix language settings such as experimental features and Bindary caches
   nix.settings = {
     experimental-features = [
       "nix-command"

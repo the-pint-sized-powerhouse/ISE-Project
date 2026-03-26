@@ -4,7 +4,8 @@
   config,
   ...
 }: {
-  imports = [./home/${userSettings.theme}.nix];
+  imports = [./home/${userSettings.theme}.nix]; # imports the chosen theme from the /themes/home/ folder. Theme is set by variable found in flake.nix
+  # Stylix allows for the universal themeing of all applications on the system using imported Base16 themes. Colours can be imported as variables as needed if existing configurations do not exist
   stylix = {
     enable = true;
     cursor = {
@@ -19,6 +20,7 @@
       sizes.terminal = 11;
     };
     targets = {
+      # Used to manual target certain applications for Stylix, Stylix will usually theme applications automatically, defaulting the targetting to true
       hyprland.enable = false;
       waybar.enable = false;
       hyprlock.enable = false;
@@ -33,6 +35,7 @@
       };
     };
   };
+  # Creates a file in the home directory containing all of thee colour codes of the currently enabled theme, the colour codes are imported from the stylix module (with config.lib.stylix.colors)
   home.file.".colours".text = with config.lib.stylix.colors; ''
     base00  ->  #${base00-hex}  ->   rgb(${base00-rgb-r}, ${base00-rgb-g}, ${base00-rgb-b})
     base01  ->  #${base01-hex}  ->   rgb(${base01-rgb-r}, ${base01-rgb-g}, ${base01-rgb-b})

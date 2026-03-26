@@ -4,9 +4,10 @@
   userSettings,
   ...
 }: {
-  # -------- STABLE ------- #
+  # Sets which packages will be installed onto the system
   environment.systemPackages =
     (with pkgs; [
+      # ------ STABLE ------ #
       woeusb
       woeusb-ng
       mediawriter
@@ -72,6 +73,7 @@
       psutil
     ]);
 
+  # Uses nix-flatpak module imported in the flake to download Flatpk applications
   services.flatpak.packages = [
     "io.github.giantpinkrobots.flatsweep"
     "com.usebottles.bottles"
@@ -81,6 +83,7 @@
     "com.stremio.Stremio"
   ];
 
+  # Dowloads programs with built in Nix Configuration
   programs = {
     nh = {
       enable = true;

@@ -1,4 +1,5 @@
 {
+  # Fonts are cloned from the repo into the fonts folder of the computer
   home.file = {
     ".local/share/fonts/Anurati-Regular.otf".source = ./Anurati-Regular.otf;
     ".local/share/fonts/automata.otf".source = ./automata.otf;

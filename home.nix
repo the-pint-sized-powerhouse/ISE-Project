@@ -56,9 +56,6 @@
     # ----- LAZYGIT ----- #
     ./modules/lazygit.nix
 
-    # ----- MICROSOFT-OFFICE ----- #
-    ./applications/microsoft-office/office.nix
-
     # ----- LUTRIS ------ #
     ./modules/lutris.nix
 

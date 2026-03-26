@@ -3,8 +3,10 @@
   userSettings,
   ...
 }: {
+  # Enables virtualisation
   virtualisation = {
     libvirtd = {
+      # libvirtd allows for the creation of low level virtual machines
       enable = true;
       qemu = {
         package = pkgs.qemu_kvm;
@@ -23,7 +25,7 @@
   };
   programs.virt-manager.enable = true;
   environment.systemPackages = with pkgs; [
-    distrobox
+    distrobox # distrobox allows for the creation of terminal based virtual machines
   ];
   users.groups.libvirtd.members = ["${userSettings.username}"];
 }

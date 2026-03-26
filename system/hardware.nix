@@ -1,4 +1,5 @@
 {
+  # sets hardware configuration
   hardware = {
     graphics = {
       enable = true;

@@ -1,8 +1,11 @@
 {
+  # Enables system services
   services = {
     libinput.mouse.accelProfile = "flat";
     udisks2.enable = true;
     hardware.openrgb.enable = true;
+
+    # Sets Flatpak settings using the nix-flatpak module imported in the flake
     flatpak = {
       enable = true;
       update.onActivation = true;
@@ -23,6 +26,7 @@
         ];
       };
     };
+
     pipewire = {
       enable = true;
       alsa = {
