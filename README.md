@@ -1,6 +1,6 @@
-Name: Fionn Bennett
-CAO: 26580249
-Project Title: Designing a Declarative, Immutable Operating system
+Name: Fionn Bennett  
+CAO: 26580249  
+Project Title: Designing a Declarative, Immutable Operating system  
 Repository: https://github.com/the-pint-sized-powerhouse/ISE-Project
 
 # ISE Project
