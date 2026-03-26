@@ -1,51 +1,36 @@
+Name: Fionn Bennett
+CAO: 26580249
+Project Title: Designing a Declarative, Immutable Operating system
+Repository: https://github.com/the-pint-sized-powerhouse/ISE-Project
 
 # ISE Project
-This document (the brief) can also be read on the GitHub repository that I have linked below. 
-URL: https://github.com/the-pint-sized-powerhouse/ISE-Project
 
 ## Overview
 
-I have designed a reproducible operating system based on NixOS. NixOS is an open-source Linux distribution that utilises the Nix package manager. It uses an immutable design and has an atomic update model. All programs, services, and system configurations must be declared in the Nix coding language. I designed my OS with productivity in mind, while also putting great consideration into the aesthetics and the ease of use of the user-interface. I utilised the home-manager module for NixOS to declaratively manage my user-environment.
-
-## Reason for project
-
-This project began as a consequence of my issues with modern Windows. Microsoft’s abandonment of the simplicity of older verisions of Windows as well as the pre-installed bloatware and spyware, which Microsoft uses to collect user data, led to me becoming extremely unhappy with the user experience. So I began to research alternatives to Windows in March of 2016.
-I discovered lightweight Linux distributions. These distributions are designed to utilise minimal amounts of storage while remaining powerful and flexible. I settled on Gentoo, which is a source-based Linux distribution with the user build having to build all of their software from source. The compile times  soon began to become a burden, so I would end up abandoning it.
-Upon discovering NixOS, I learned that it met all expectations. NixOS, which is incredibly lightweight (it runs on 1 GB of RAM despite all of my customisations), also has a declarative package manager, which allows me to manage my software and dependencies with ease while allowing for the reproducibility of my system.
-
-# Benefits of NixOS
-
-NixOS’ main selling-point is its fully declarative system-configuration. Your entire system-configuration is placed within a Nix Flake. This file (flake.nix in the repository) is responsible for all inputs and outputs of the system. For instance, the Nix Packages repository is inputted by the Flake, it is then given the variable nixpkgs as well as being assigned certain attributes, nixpkgs can now be utilised all throughout the file tree declaratively. All input versions are then automatically locked in the flake.lock file so that their versions do not change unless updated. This ensures that no software breaks due to unexpected or unintentional updates.
+This project is a custom, fully reproducible operating system built on NixOS. NixOS is a unique Linux distribution which uses a functional approach to system and package management. In a more traditional operating system such as one based on Gentoo or Debian, software is installed imperatively and configuration files are scattered all across the system. In my operating system, the entire state of the system is declared in the Nix programming language and stored in this repository.
 
 <div align="center">
   <a target="_blank"><img src="./images/1.png"</a>
 </div>
 
-# Design philosophy
+When designing the system I researched different design philosophies. I wishes to focus on simplicity and easy maintenance as the operating system was something that I wished to use as my “daily driver”. The entire system is anchored around the Nix Fake, the flake handles all of the inputs (package repositories and speciality programs) and the outputs (system configurations and variables), locking each inputs version in the flake.lock file. I chose Hyprland, a Wayland-based dynamic tiling window manager, as my desktop environment, and I used Home-Manager to manage the settings and theming of over 34 user-specified applications. This includes things such as the terminal, browser, and my Git settings. Lastly I used the Stylix module to apply a universal Base16 colour scheme across the entire operating system automatically.
 
-Due to my interest in UNIX-based operating systems, I decided to employ the UNIX Design Philosophy as defined by Ken Thompson and documented by Doug McIlroy in the Bell System Technical Journal in 1978.  The modularisation of my files ensured that editing and maintaining my code would be easy due to its well structured layout in separate files. Each nix file is designed to do one thing, as simply and efficiently as possible. My code is also easily testable due to the modularisation of my file-tree, resulting in the isolation of error messages to individual files.
+## Motivation
 
-# Hyprland
+The reason for this project is the result of my increasing frustration with modern operating systems such as Windows 11. The trade off of functionality and performance for bloatware and data collection led to me searching for alternatives. Initially the thought of a lightweight Linux distribution appealed to me and I settled on Gentoo after a bit of experimentation with other distros. While I enjoyed the flexibility of compiling my own software from source, customising each install with USE flags, the long compile times became a serious burden on my productivity and creativity.
 
-In order to improve my productivity, I implemented a dynamic tiling compositor (DTC) in my configuration. A DTC automatically resizes any windows on the screen, ensuring that windows never overlap. They also allow for the creation of workspaces, which are used to keep applications open on a virtual desktop. The DTC I decided to use is Hyprland by Vaxry. Hyprland, while also being reasonably lightweight and open-source, also contains many aesthetic options that can be applied using a nix wrapper, such as;
-- The option to make window backgrounds opaque
-- Animations when changing workspace and moving windows
-- Coloured window borders
-- Collapsible scratchpads which can be used to create a floating window for applications that are regularly used alongside other programs.
-- And countless other features.
+I eventually discovered NixOS when reading an article on immutable design. NixOS offers a great compromise, it has pre-compiled binary caching, a reasonably lightweight footprint, and a declarative package manager, ensuring reproducibility. The creation of this project has led to me taking full control of my computers and it ensures that I will never need to set up a new OS from scratch ever again.
 
-# Home-manager and Stylix
+## The Impact
 
-Home-manager is a module that can be inputted into the Nix Flake, it can then be used to declaratively configure the user environment using nix wrappers. Some examples of my uses of Home-Manager are;
-- My creation of the UI, such as the desktop shell
-- Customisation of 35 apps, including  my terminal emulator, git settings, my browser, and many others
-- Managing user settings such as my username and networking settings
-The Stylix module for Home-Manager is used to automatically customise the colours of all my applications so that they follow any Base16 colour scheme chosen. This means that all of the UI elements and applications seem to be completely integrated into the user-experience.
+The biggest impact of the initialisation of this project has been the complete restructuring of how I interact with my computers. 1. Total Reproducibility: As my entire OS is defined in a GitHub repository, I have the ability to deploy my exact system on any compatible x86 machine in a matter of minutes. The flake.lock file ensures that all dependencies are strictly locked to specific versions, this eliminates the infamous “it works on my machine” comments when attempting to a solve a niche issue on a GitHub issues thread. 2. Resilience: NixOS usses an atomic update model. If I was to write a configuration that breaks the system, I have the option to simply roll back to a previous, functional state from within the bootloaders launch menu. The ability to roll back has given me the freedom to experiment with different low level-system configurations without the fear of destroying my operating system and the data contained within it. 3. Productivity: I have always been frustrated with the manual, mouse-heavy management of windows on other operating systems. Upon researching alternatives I discovered the world of dynamic tiling window managers. I chose Hyprland as it is Wayland based (X11 has been largely fazed out by larger Desktop Environments such as Gnome and KDE), and it contains options for aesthetic customisation such as background opacity and blurring, coloured borders, and animations. Hyprland automatically tiles windows into a grid so that they never overlap, and the workflow is strictly keyboard oriented, this means that I never have to remove my hands from the keyboard as a move between windows and workspaces.
 
-# Conclusion
+## Challenges
 
-I’m most proud of my declarative configuration of NeoVim using the NixVim module for Home-Manager. NixVim allowed me to configure Neovim, including all of its plugins, keymaps, and settings, through the use of nix code. I have successfully created a fully functional IDE within the terminal. This includes code completion using LSPs, a working sidebar file-browser, a markdown environment, and several other features that can be explored in the “modules/nixvim/” folder of the repository.
+The most significant challenge I face when designing the operating system was its monolithic configuration structure. Early in development I had declared the entire system in a single, massive file, which was extremely difficult to navigate and read. My solution was the adoption of a new design philosophy. I applied the UNIX Design Philosophy, this philosophy dictates that code should “do one thing and do it well”. I completely reformatted the codebase, modularising the files into separate directories such as system/, modules/, and themes/. Each Nix file has been designed to manage one component of the system, I then bring them all together using the the Nix languages imports system. This modularisation isolated error messages to specific files and made my operating system much easier to modify and debug.
 
-<div align="center">
-  <a target="_blank"><img src="./images/2.png"</a>
-</div>
+## Achievement
+
+My proudest achievement was implementing my declerative configuration of NeoVim using the NixVim module (modules/nixvim/). Instead of configuring the editor using Lua, I used Nix to build a fully functional IDE entirely within the terminal. I implemented LSPs for code completion, a file browsing side bar, a markdown environment, custom keymaps and many other features (found within the plugins folder of modules/nixvim/.
+
+## Gallery
