@@ -1,21 +1,23 @@
 {
   inputs = {
-    # ----- NIX PACKAGES ----- #
+    # Imports different repositories for use in the configuration
+    # ----- NIX PACKAGES ----- # {Offical Nix packages}
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:/nixos/nixpkgs/master";
 
     # ----- NIXOS-HARDWARE ----- #
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # (repo containing hardware configurations specific to certain hardware)
 
     # ----- NIX-USER-REPOSITORY ----- #
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs"; # Has the NUR follow nix packages so that all packages are compatible
     };
 
     # ----- HOME-MANAGER ----- #
     home-manager = {
+      # (this module allows for the declerative configuration of software used by the home-user)
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -28,32 +30,37 @@
 
     # ----- STYLIX ----- #
     stylix = {
+      # (This modules allows for the universal themeing of all software managed by the system, using Base16 colourschemes)
       url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # ----- NIXVIM ----- #
     nixvim = {
+      # (allows for the declerative configuration of Neovim and its plugins)
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # ------ NIX-FLATPAKS ----- #
-    nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/latest"; # (allows for the declerative downloading and configuration of Flatpak applications)
 
     # ----- SPICETIFY ------ #
     spicetify-nix = {
+      # (allows for the declerative configuration and themeing of spotify)
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # ----- NIXCORD ----- #
     nixcord = {
+      # (allows for the declerative configuration and themeing of Discord)
       url = "github:kaylorben/nixcord/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = inputs @ {
+    # Outputs all inputs so that they are avaidable for use in modules
     nixpkgs,
     home-manager,
     nixpkgs-unstable,
@@ -67,6 +74,7 @@
     nixos-hardware,
     ...
   }: let
+    # creates variables for values that are use frequently throughtout the config
     systemSettings = {
       system = "x86_64-linux";
       hostname = "sisyphus";
@@ -101,6 +109,7 @@
         ];
       };
     };
+    # Configuration of the package channels
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config = {
@@ -114,7 +123,6 @@
         ];
       };
     };
-
     pkgs-master = import nixpkgs-master {
       inherit system;
       config = {
@@ -129,6 +137,7 @@
     };
   in {
     nixosConfigurations = {
+      # imports modules to each system configuration
       desktop = lib.nixosSystem {
         inherit system;
         modules = [
@@ -170,6 +179,7 @@
       };
     };
     homeConfigurations = {
+      # imports modules to each home configuration
       fionnbennett-desktop = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
